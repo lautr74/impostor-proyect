@@ -1,0 +1,84 @@
+/* ===================================
+   NAVBAR STYLES
+   =================================== */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--primary-gradient);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+nav a.active {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Empuja el último elemento (userName o login) a la derecha */
+nav a:last-child,
+nav span:last-child {
+  margin-left: auto;
+}
+
+/* Estilos para el userName cuando está autenticado */
+nav span {
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ===================================
+   RESPONSIVE - MÓVIL
+   =================================== */
+
+@media (max-width: 768px) {
+  nav {
+    padding: 12px 20px;
+    gap: 16px;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* Para pantallas muy pequeñas, ocultamos algunos links */
+@media (max-width: 480px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  nav a {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
