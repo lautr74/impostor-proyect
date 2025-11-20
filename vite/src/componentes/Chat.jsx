@@ -34,6 +34,9 @@ export function Chat({ userName }) {
     socket.on('mensajes previos', handleMensajesPrevios);
     socket.on('chat message', handleChatMessage);
 
+    //solicitar historial al conectarse
+    socket.emit('request history')
+
     // Cleanup - remover solo los listeners del chat
     return () => {
       socket.off('mensajes previos', handleMensajesPrevios);

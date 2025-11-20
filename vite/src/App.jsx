@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Auth } from "./pages/Auth.jsx"
 import { Navbar } from './componentes/Navbar.jsx'
@@ -8,25 +8,54 @@ import { Chat } from './componentes/Chat.jsx'
 import { SocketProvider } from './componentes/ContextSocket.jsx'
 import { Toaster } from 'sonner'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { API_URL } from './config';
 import "./App.css"
+
+
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+         if (!isAuthenticated) { 
+             return <Navigate to="/auth" replace />; 
+           }
+      return children;
+}
+
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false); 
     const [userName, setUserName] = useState('');
+    const [loading, setLoading] = useState(true);
 
-    const ProtectedRoute = ({ children }) => {
-        if (!isAuthenticated) { 
-              return <Navigate to="/auth" replace />; 
-        }
-        return children;
-    }
+    useEffect(() => {
+      const verificarSesion = async () => {
+          try {
+              const res = await fetch( `${API_URL}/verificar-sesion`, {
+                  credentials: 'include' 
+              });
+              const data = await res.json();
+                
+              if (data.autenticado) {
+                  setIsAuthenticated(true);
+                  setUserName(data.userName || ''); 
+              }
+          } catch (error) {
+              console.error('Error verificando sesión:', error);
+          } finally {
+              setLoading(false);
+          }
+               };
+
+        verificarSesion();
+    }, []);
+
+   
+if (loading) return <div style={{color: 'white'}}>Cargando partida...</div>;
 
 return(
   <BrowserRouter>
     <Navbar isAuthenticated={isAuthenticated} userName={userName}/>
     <Toaster position="top-right" richColors />
     
-    {/* Un solo SocketProvider envolviendo todo lo que lo necesita */}
+    
     {isAuthenticated ? (
       <SocketProvider>
         <Chat userName={userName} />
@@ -34,7 +63,7 @@ return(
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<Navigate to="/" replace />} />
           <Route path='/impostor' element={
-            <ProtectedRoute>
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
               <GameManager userName={userName} />
             </ProtectedRoute>
           }/>

@@ -1,7 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 //import https from 'https';
 import cors from "cors";
-import dotenv from 'dotenv';
+
 import connectDB from './src/config/database.js';
 import morgan from 'morgan';
 //import path from 'path';
@@ -18,8 +21,6 @@ import { register } from './src/controllers/register.js'
 //const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000
-dotenv.config();
-
 
 //HTTP SERVER
 const app = express();
@@ -63,11 +64,24 @@ app.use((req, res, next) => {
 
 //SERVIR ARCHIVOS ESTATICOS
 //app.use(express.static((path.join(__dirname, 'dist'))));
-//ROUTING
 
+
+//ROUTING
 app.post('/registro', register);
 
 app.post('/login', login)
+
+app.get('/verificar-sesion', (req, res) => {
+  if (req.session.userId) {
+    res.json({ 
+      autenticado: true, 
+      userId: req.session.userId,
+      userName: req.session.usuario
+    });
+  } else {
+    res.json({ autenticado: false });
+  }
+});
 
 // SERVIR REACT PARA TODAS LAS DEMÁS RUTAS
 /* app.get(/^(?!.*\.).*$/, (req, res) => {
@@ -81,4 +95,4 @@ io.engine.use(sessionMiddleware);
 setupSocket(io);
 
 
-server.listen(PORT, () => console.log(`Servidor corriendo en https://localhost:3000`));
+server.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

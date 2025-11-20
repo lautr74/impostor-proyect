@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
+import { API_URL } from '../config.js';
 
 const SocketContext = createContext(null);
 
@@ -9,7 +10,7 @@ export function SocketProvider({ children }){
 
     useEffect(() => {
 
-         SocketRef.current = io('http://localhost:3000', {
+         SocketRef.current = io(`${API_URL}`, {
             withCredentials: true
         });
 

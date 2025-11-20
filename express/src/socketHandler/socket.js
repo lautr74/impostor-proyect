@@ -21,14 +21,15 @@ export const setupSocket = (io) => {
     io.on('connection', (socket) => {
         console.log(`✅ Nuevo usuario conectado: ${socket.username} (${socket.id})`);
 
-        // Configurar módulo de chat
+        // Configurar módulo de chat; 
         setupChat(io, socket);
+        
 
         // Configurar módulo de juego
         setupImpostor(io, socket);
 
         // Desconexión
-        socket.on('disconnect', () => {
+        socket.on('disconnect', () => {3
             console.log(`❌ Usuario desconectado: ${socket.username} (${socket.id})`);
 
             const wasInGame = manejarDesconexion(socket.id);

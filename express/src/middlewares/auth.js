@@ -1,5 +1,7 @@
 import session from 'express-session';
-
+import MongoStore from 'connect-mongo';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const requireAuth = (req, res, next) => {
   if (!req.session.userId) {
@@ -9,9 +11,12 @@ export const requireAuth = (req, res, next) => {
 };
 
 export const sessionMiddleware =  session({
-      secret:process.env.SESSION_SECRET || '4321542635JKLEDHFSJ54636',
+      secret:process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
+      store: new MongoStore({
+        mongoUrl: process.env.MONGO_URI
+      }),
       cookie: {
           maxAge: 1000 * 60 * 60 * 24,
           httpOnly: true,

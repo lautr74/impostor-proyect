@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from '../config.js';
 
 
 export function Auth({ setIsAuthenticated, setUserName }) {
@@ -22,7 +22,7 @@ export function Auth({ setIsAuthenticated, setUserName }) {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/registro", {
+      const res = await fetch(`${API_URL}/registro`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
@@ -54,7 +54,7 @@ export function Auth({ setIsAuthenticated, setUserName }) {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
