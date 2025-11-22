@@ -1,0 +1,25 @@
+{
+  "name": "ejemplo-express-jest",
+  "version": "1.0.0",
+  "description": "Un ejemplo práctico de cómo hacer pruebas de Express con Jest y Supertest.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "express",
+    "jest",
+    "supertest",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.4"
+  }
+}
