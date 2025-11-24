@@ -10,16 +10,19 @@ export const requireAuth = (req, res, next) => {
   next();
 };
 
-export const sessionMiddleware =  session({
-      secret:process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: false,
-      store: new MongoStore({
-        mongoUrl: process.env.MONGO_URI
-      }),
-      cookie: {
-          maxAge: 1000 * 60 * 60 * 24,
-          httpOnly: true,
-          secure: false,
-          sameSite: "lax",
-      }})
+export const createSessionMiddleware = (mongoUrl) => {
+  return session({
+    secret: process.env.SESSION_SECRET || 'a-secret-for-testing',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongoUrl: mongoUrl
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+    }
+  });
+}
