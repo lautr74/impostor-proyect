@@ -1,9 +1,11 @@
 // src/config/database.js
 import Database from 'better-sqlite3';
 
+let db;
+
 try {
   // Intentamos abrir/crear la DB
-  let db = new Database('chat.db', { verbose: console.log });
+  db = new Database('chat.db', { verbose: console.log });
 
   // Intentamos crear la tabla
   db.exec(`

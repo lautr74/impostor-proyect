@@ -16,7 +16,7 @@ const startServer = async () => {
 
   const io = new Server(server, {
     cors: {
-      origin:['http://localhost:3000', 'http://localhost:5173'],
+      origin: process.env.VITE_API_URL,
       methods: ["GET", "POST"],
       credentials: true
     }
