@@ -22,7 +22,7 @@ jobs:
           port: 22
           script: |
             # Entrar a la carpeta del proyecto
-            cd 
+            cd impostor-proyect 
             
             # Actualizar el código
             git pull origin main
