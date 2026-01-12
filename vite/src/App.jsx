@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage.jsx'
 import { GameManager } from './pages/GameManager.jsx'
 import { Chat } from './componentes/Chat.jsx'
 import { SocketProvider } from './componentes/ContextSocket.jsx'
+import { Offline } from './pages/Offline.jsx'
 import { Toaster } from 'sonner'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { API_URL } from './config';
@@ -72,6 +73,7 @@ return(
     ) : (
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/offline' element={<Offline />} />
         <Route path='/auth' element={
           <Auth 
             setUserName={setUserName}

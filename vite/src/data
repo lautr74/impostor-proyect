@@ -1,0 +1,9 @@
+export const FOOTBALL_PLAYERS = [
+  "Lionel Messi", "Cristiano Ronaldo", "Kylian Mbappé", "Erling Haaland", 
+  "Jude Bellingham", "Vinícius Jr", "Lamine Yamal", "Robert Lewandowski", 
+  "Kevin De Bruyne", "Mohamed Salah", "Harry Kane", "Antoine Griezmann", 
+  "Rodri", "Luka Modric", "Phil Foden", "Bukayo Saka", "Florian Wirtz", 
+  "Jamal Musiala", "Cole Palmer", "Bernardo Silva", "Lautaro Martínez", 
+  "Julián Álvarez", "Luis Díaz", "Federico Valverde", "Pedri", "Gavi", 
+  "Emiliano Martínez", "Thibaut Courtois", "Nico Williams", "Darwin Núñez"
+];

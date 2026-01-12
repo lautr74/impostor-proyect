@@ -7,6 +7,7 @@ export function Navbar({ isAuthenticated, userName }) {
     <NavLink to="/">Home</NavLink>
     <NavLink to="/clavito">Clavito</NavLink>
     <NavLink to="/impostor">Impostor</NavLink>
+    <NavLink to="/offline">Offline</NavLink>
     {isAuthenticated ? (
       <span>{userName}</span>
     ) : (
