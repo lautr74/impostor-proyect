@@ -17,8 +17,9 @@ const SetupNames = ({ quantity, StartGame }) => {
         <form onSubmit={handleSubmit}>
             <h3>Escribe los nombres:</h3>
             {names.map((name, i) => (
-                <div key={i} style={{ marginBottom: '10px' }}>
+                <div key={i}>
                     <input
+                        className="offline-input"
                         type="text"
                         placeholder={`Jugador ${i + 1}`}
                         value={name}
@@ -27,7 +28,7 @@ const SetupNames = ({ quantity, StartGame }) => {
                     />
                 </div>
             ))}
-            <button type="submit">Generar Roles</button>
+            <button className="offline-button" type="submit">Generar Roles</button>
         </form>
     );
 

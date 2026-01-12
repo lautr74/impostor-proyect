@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./Offline.css";
 import SetupPlayers from "../componentes/SetupPlayers";
 import SetupNames from "../componentes/SetupNames";
 import GameScreen from "../componentes/GameScreen";
@@ -24,7 +25,7 @@ export const Offline = () => {
     }
 
     return (
-        <div>
+        <div className="offline-container">
             <h1>🕵️ El Impostor</h1>
             {step === 1 && <SetupPlayers handleSiguiente={handleSiguiente} />}
             {step === 2 && <SetupNames quantity={numPlayers} StartGame={StartGame} />}

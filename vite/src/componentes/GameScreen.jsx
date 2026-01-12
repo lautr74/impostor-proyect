@@ -18,10 +18,10 @@ export default function GameScreen({ playerNames, secretWord, impostorIndex }){
     // Si todos ya vieron su rol, mostramos la pantalla de debate
     if (gameStarted) {
         return (
-            <div style={{ textAlign: 'center' }}>
+            <div>
                 <h2>¡A discutir! 🗣️</h2>
                 <p>Todos conocen su rol. El impostor debe intentar pasar desapercibido.</p>
-                <button onClick={() => window.location.reload()}>
+                <button className="offline-button" onClick={() => window.location.reload()}>
                     Nueva Partida
                 </button>
             </div>
@@ -54,11 +54,11 @@ export default function GameScreen({ playerNames, secretWord, impostorIndex }){
             </div>
 
             {!isRevealed ? (
-                <button onClick={() => setIsRevealed(true)}>
+                <button className="offline-button" onClick={() => setIsRevealed(true)}>
                     REVELAR
                 </button>
             ) : (
-                <button onClick={handleNext}>
+                <button className="offline-button" onClick={handleNext}>
                     ENTENDIDO, SIGUIENTE
                 </button>
             )}

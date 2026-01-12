@@ -11,8 +11,8 @@ const SetupPlayers = ({ handleSiguiente }) => {
     return (
         <div>
             <h2>Selecciona el número de jugadores:</h2>
-            <input type='number' min={1} value={numPlayers} onChange={handleNumber}/>
-            <button onClick={() => handleSiguiente(numPlayers)}>Siguiente</button>
+            <input className="offline-input" type='number' min={1} value={numPlayers} onChange={handleNumber}/>
+            <button className="offline-button" onClick={() => handleSiguiente(numPlayers)}>Siguiente</button>
         </div>
     );
 }
